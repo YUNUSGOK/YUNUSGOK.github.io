@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'u(1@%729y@c-kojn$b=ik3pa!9i7^7ytll#i%meoeb^*n1ba4e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -80,10 +80,10 @@ WSGI_APPLICATION = 'metusub.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'metusub',
-        'USER': 'yunus',
+        'NAME': 'ynsmrgok$metusub',
+        'USER': 'ynsmrgok',
         'PASSWORD': 'yunus217',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'HOST': 'ynsmrgok.mysql.pythonanywhere-services.com',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }
 }
