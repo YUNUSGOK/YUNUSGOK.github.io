@@ -1,0 +1,83 @@
+
+{% extends 'main.html' %}
+{%block body%}
+
+<a class= "page_top" href="/"><img class='base_logo' src="/media/base/logo.png" alt="Logo"></a>
+<h1 class= "page_name" >ODTÜ SUALTI TOPLULUĞU</h1>
+  
+<div class="navbar">
+  <a href="/">Anasayfa</a>
+
+  <div class="dropdown">
+    <button class="dropbtn">Hakkımızda
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="/about">Biz Kimiz</a>
+      <a href="/accounts/boardmembers">Kurullar</a>
+      <a href="/accounts/members/list1">Üyelerimiz</a>
+    </div>
+  </div> 
+  <div class="dropdown">
+    <button class="dropbtn">Etkinlikler
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="/events/lectures">Eğitimler</a>
+      <a href="/events/camps">Kamplar</a>
+      <a href="/events/meetings">Toplantılar</a>
+    </div>
+  </div> 
+  <div class="dropdown">
+    <button class="dropbtn" onclick="window.location.href='/courses'">Dersler
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="/courses/SAT1XX">100 Kodlu Dersler</a>
+      <a href="/courses/SAT2XX">200 Kodlu Dersler</a>
+      <a href="/courses/SAT3XX">300 Kodlu Dersler</a>
+      <a href="/courses/SAT4XX">400 Kodlu Dersler</a>
+    </div>
+  </div> 
+     <a href="#contact">İletişim</a>
+    {% if user.is_authenticated %}
+        <div class="dropdown">
+    <button class="dropbtn">Üye İşlemleri
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="/accounts/profile">Profili Görüntüle</a>
+      <a href="/accounts/profile/{{user.id}}/edit">Profili Düzenle</a>
+      <a href="{% url 'logout' %}">Çıkış Yap</a>
+    </div>
+  </div> 
+          {%if user.groups.all %}
+                          <div class="dropdown">
+                            <button class="dropbtn">Yönetim Paneli
+                              <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-content">
+                              {%if perms.auth.add_user%}
+                              <a href="/accounts/requests">Üyelik İstekleri</a>
+                              {% endif %}
+                              <a href="/accounts/profile/edit">deneme2</a>
+                              <a href="{% url 'logout' %}">deneme3</a>
+                            </div>
+                          </div>       
+          {% endif %}
+    {% else %}
+
+      <a href="{% url 'login' %}">Üye Girişi</a>
+   
+    {% endif %}
+</div>
+
+
+   
+    {% block content %}
+    {% endblock %}
+
+{% endblock %}
+
+
+

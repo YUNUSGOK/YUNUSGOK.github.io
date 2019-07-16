@@ -1,0 +1,67 @@
+
+
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Dersler</title>
+{% endblock %}
+
+{% block content %}
+
+<h1>{{ object.lecture_course }}</h1>
+<p>{{ object.instructor }}</p>
+
+<p>Published: {{ object.date}}</p>
+<p>Published: {{ object.lectureparticipant_set.all}}</p>
+
+
+	  {% if user.groups.all  %}
+<div class="vertical-menu">
+  <a href="#" class="active">Home</a>
+  {% if perms.events.change_camp  %}
+  <a href="update">Eğitim Bilgilirini Düzenle</a>
+  {% endif %}
+  {% if perms.events.add_camp  %}
+  <a href="/events/lectures/create/">Eğitim Ekle</a>
+	{% endif %}
+</div>
+		{% endif %}
+{{participant_set}}
+
+  <div>
+      
+      <table>
+      <tr class='table_head'>
+          
+          <th>Üye No</th>
+          <th>Üye Adı</th>
+
+      </tr>
+      {% for event in  participant_set %}
+
+          <tr>
+            <td>{{event.member.member_no}}</td>
+ 
+            <td>{{event.member.user.first_name}} {{event.member.user.last_name}}</td>
+
+          </tr>
+     
+        {% endfor %}
+    </table>
+
+  
+  </div>
+
+  {% if user.is_authenticated  %}
+<form action="/events/lectures/{{object.id }}/" method="POST">
+{%if object.date > now%}
+{% csrf_token %}
+ <input type="hidden" name="lecture_id" value= '{{ object.id }}'/><br><br>
+ <input type="hidden" name="submitted_member_id" value= '{{ user.profile.id }}'/>
+
+<input type="Submit" name="Submit" value="Submit"/>
+<input type="Submit" name="delete" value="Delete"/>
+</form>
+ {% endif %}    
+ {% endif %} 
+{% endblock %}

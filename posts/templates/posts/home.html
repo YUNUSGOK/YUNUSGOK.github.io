@@ -1,0 +1,68 @@
+
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+    {% load static %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+
+<div id="announce">
+
+  <h2>Duyurular</h2>
+
+{%for announce in announcement_list%}
+
+<button class="accordion"> {{announce.head}}</button>
+<div class="panel">
+  <p>{{announce.text}}</p>
+</div>
+
+</div>
+{%endfor%}
+
+<p id="demo"></p>
+
+
+</head>
+<body>
+
+{%for board in groups%}
+<a href="/accounts/boards/{{board.id}}" >{{board.name}}</a>
+{%endfor%}
+
+<div class="slideshow-container">
+
+{%for photo in photos%}
+<div class="mySlides fade">
+  <div class="numbertext"></div>
+  <a href="https://www.instagram.com/odtusat" ><img src="{{photo.image.url}}" style="width:100%"></a>
+  <div class="text"></div>
+  <a href="https://www.instagram.com/odtusat" ><img src="media/posts/instagram-logo-main.jpg" style="width:70%">
+</div>
+{%endfor%}
+
+</div>
+<br>
+
+<div style="text-align:center">
+  {%for photo in photos%}
+  <span class="dot"></span> 
+  {%endfor%}
+</div>
+<script type="text/javascript" src = "{% static 'posts/announce_accordion.js' %}"></script>
+
+
+   {%if perms.auth.add_user%}
+     {%if SignUpRequest %}
+
+     <script >
+    window.alert("Onaylanmamış üye istekleri bulunmaktadır");
+
+  </script>
+
+     {%endif%}
+   {%endif%}
+
+{% endblock %}
+

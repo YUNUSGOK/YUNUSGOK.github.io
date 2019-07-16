@@ -1,0 +1,24 @@
+
+
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Dersler</title>
+{% endblock %}
+
+{% block content %}
+
+
+<h1>{{ course.couse_code }}</h1>
+<ul>
+	{{ course.course_code}}
+
+    <li>{{ course.course_name}}</li>
+    <li>{{ course.course_content}}</li>
+    <li>{{ course.last_update}}</li>
+
+    
+</ul>
+<input type="button" value="Geri Dön" onclick="javascript: history.back();">
+
+{% endblock %}

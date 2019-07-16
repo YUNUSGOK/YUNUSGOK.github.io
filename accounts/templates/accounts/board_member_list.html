@@ -1,0 +1,24 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'courses/style.css' %}">
+
+{% for  kurul in object_list %}
+	
+		<h3>{{kurul.name}}</h3>
+
+		{%for boardmember in kurul.user_set.all%}
+			<h5>{{boardmember.first_name}} {{boardmember.last_name}}</h5>
+
+		{%endfor%}
+
+
+
+
+
+{%endfor%}
+
+{% endblock %}

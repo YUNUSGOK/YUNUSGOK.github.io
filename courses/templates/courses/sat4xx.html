@@ -1,0 +1,48 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+{% if object_list %}
+  <div>
+      
+      <table>
+      <tr class='table_head'>
+          
+          <th>Ders Kodu</th>
+          <th>Ders Adı</th>
+
+      </tr>
+      {% for course in object_list %}
+
+          <tr>
+            <td><a href="/courses/{{course.coruse_code}}/">{{course.course_code}}</a></td>
+ 
+            <td>{{course.course_name}}</td>
+
+          </tr>
+     
+        {% endfor %}
+    </table>
+
+  
+  </div>
+
+
+
+
+    </ul>
+{% else %}
+    <p>No course available.</p>
+{% endif %}
+
+	  {% if user.groups.all  %}
+<div class="vertical-menu">
+  <a href="#" class="active">Home</a>
+
+  {% if perms.events.add_course %}
+  <a href="/courses/create/">Ders Ekle</a>
+	{% endif %}
+</div>
+		{% endif %}
+
+{% endblock %}

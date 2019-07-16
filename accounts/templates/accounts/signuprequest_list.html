@@ -1,0 +1,40 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'courses/style.css' %}">
+
+{% if object_list %}
+    <ul>
+    {% for sign_up_request in object_list %}
+   <hr>
+   <div>
+
+    <a href="#">{{ sign_up_request.first_name}}</a>
+  {% if user.is_authenticated  %}
+<form action="/accounts/requests/" method="POST">
+
+{% csrf_token %}
+ <input type="hidden" name="request_id" value='{{sign_up_request.id}}'/><br><br>
+
+
+<input type="Submit" name="Submit" value="Submit"/>
+<input type="Submit" name="delete" value="Delete"/>
+</form>
+ {% endif %}    
+
+   </div>
+{% endfor %}
+
+  
+
+
+
+    </ul>
+{% else %}
+    <p>Üyelik isteği bulunmamaktadır.</p>
+{% endif %}
+
+{% endblock %}
