@@ -1,51 +1,151 @@
+{%load static%}
+<!DOCTYPE html>
+<html style="background-size: cover;background-repeat: no-repeat;">
 
-{% extends 'base.html' %}
-{% block content %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>events</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Actor">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+    <link rel="stylesheet" href="{%static 'events/assets/css/styles.min.css'%}">
+</head>
+<body style="background-repeat: no-repeat;background-size: cover;background-image: url(&quot;{%static 'posts/assets/img/home_image.jpeg'%}&quot;);">
+    <h1 class="site-name" style="margin-left: 20px;margin-top: 20px;"><img height="200" src="{%static 'posts/assets/img/logo.png'%}" style="height: 130px;">ODTÜ Sualtı Topluluğu</h1>
+<!-- navbar-->
+    <nav class="navbar navbar-light navbar-expand-md d-lg-flex" style="background-color: #4d4949;width: 985;">
+        <div class="container-fluid"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item d-inline" role="presentation"><a class="nav-link active" href="/home">Anasayfa</a></li>
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="filter: hue-rotate(0deg) invert(0%);">Hakkımızda&nbsp;</a>
+                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="/about">Biz Kimiz</a><a class="dropdown-item" role="presentation" href="/accounts/boardmembers">Kurullar</a><a class="dropdown-item" role="presentation" href="/accounts/members/list1">Üyelerimiz</a></div>
+                    </li>
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="filter: hue-rotate(0deg) invert(0%);">Etkinlikler&nbsp;</a>
+                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="/events/camps">Kamplar</a><a class="dropdown-item" role="presentation" href="/events/meetings">Toplantılar</a><a class="dropdown-item" role="presentation" href="/events/lectures">Eğitimler</a></div>
+                    </li>
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Dersler&nbsp;</a>
+                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="/courses/SAT1XX">100 Kodlu Dersler</a><a class="dropdown-item" role="presentation" href="/courses/SAT2XX">200 Kodlu Dersler</a><a class="dropdown-item" role="presentation" href="/courses/SAT3XX">300 Kodlu Dersler</a>
+                            <a
+                                class="dropdown-item" role="presentation" href="/courses/SAT4XX">400 Kodlu Dersler</a>
+                        </div>
+                    </li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/contact">İletişim</a></li>
+                    <!-- Start: Authenticated User -->
+                    {%if user.is_authenticated%}
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Üye İşlemleri&nbsp;</a>
+                            <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="/accounts/profile">Profili Görüntüle</a><a class="dropdown-item" role="presentation" href="/accounts/profile/{{user.id}}/edit">Profili Düzenle</a><a class="dropdown-item" role="presentation" href="/accounts/logout">Çıkış Yap</a></div>
+                        </li>
+                    {%else%}
+                    <!-- End : Authenticated User -->
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/accounts/login">Üye Girişi</a></li>
+                    {% endif %}
+                    <!-- Start: Authorized User -->
+                    {%if perms.auth.add_user%}
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Yönetim Paneli&nbsp;</a>
+                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="/accounts/requests">Üye İstekleri</a><a class="dropdown-item" role="presentation" href="/announcements/add">Duyuru Ekle</a><a class="dropdown-item" role="presentation" href="/">deneme</a></div>
+                    </li>
+                    <!-- End : Authorized User -->
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {%if perms.events.add_meeting%}
+    <!-- Start: Sidebar -->
+    <div style="margin-top: 20px;margin-bottom: 30px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="table-responsive" style="background-color: #d9d5d5;width: ,;">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr style="background-color: #7e7777;">
+                                    <th>Toplantı No</th>
+                                    <th>Toplantı Tarihi</th>
+                                    <th>Toplantı Yeri</th>
+                                    <th>Konusu</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                 {% for meeting in object_list %}
+                <tr>
+                    <td><a class="btn btn-primary" role="button" href="/events/meetings/{{meeting.id}}">{{meeting.id}}</a></td>
+                    <td>{{meeting.date}}</td>
+                    <td>{{meeting.instructor}}</td>
+                    <td>{{meeting.location}}</td>
+                </tr>
+                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <!-- Start: Vertical menu -->
+                    <section id="vertical-menu">
+                        <div class="list-group"><a class="list-group-item active" href="/events/meetings"> <i class="fa fa-book fa-fw"></i>Toplantılar</a><a class="list-group-item" href="/events/meetings/create"> <i class="fa fa-pencil fa-fw"></i>Toplantı Ekle</a><a class="list-group-item"
+                                href="/events/meetings/{{meeting.id}}/update"> <i class="fa fa-edit fa-fw"></i>Toplantı Bilgilerini Düzenle</a></div>
+                    </section>
+                    <!-- End: Vertical menu -->
+                </div>
+            </div>
+        </div>
+    </div>
+    {%else%}
+    <!-- End: Sidebar -->
+    <div class="table-responsive" style="background-color: #d9d5d5;width: ,;margin-bottom: 30px;">
+        <table class="table table-striped">
+            <thead>
+                <tr style="background-color: #7e7777;">
+                    <th>Toplantı No</th>
+                    <th>Toplantı Tarihi</th>
+                    <th>Toplantı Yeri</th>
+                    <th>Konusu</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for meeting in object_list %}
+                <tr>
+                    <td><a class="btn btn-primary" role="button" href="/events/meetings/{{meeting.id}}">{{meeting.id}}</a></td>
+                    <td>{{meeting.date}}</td>
+                    <td>{{meeting.instructor}}</td>
+                    <td>{{meeting.location}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- Start: index-top-info -->
+    <div class="d-xl-flex d-flex align-items-xl-center index-top-info">
+        <div class="container">
+            <div class="row">
+                <div class="col social-links">
+                    <div class="float-left">
+                        <ul>
+                            <li><a href="https://www.facebook.com/odtusat/"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://www.instagram.com/odtusat/"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="https://www.youtube.com/user/ODTUSAT"><i class="fa fa-youtube-play"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col contact-information">
+                    <div class="float-right"><span>sat-yk@metu.edu.tr</span></div><a href="/home" style="padding-right: 20px;">Anasayfa</a><a href="/accounts/login" style="padding-right: 20px;">Üye Girişi</a><a href="/contact" style="padding-right: 20px;">İletişim</a></div>
+            </div>
+        </div>
+    </div>
+    {%endif%}
+    <!-- End: index-top-info -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+    <script src="{%static 'events/assets/js/script.min.js'%}"></script>
+</body>
 
-{% load static %}
-
-<link rel="stylesheet" type="text/css" href="{% static 'courses/style.css' %}">
-
-{% if object_list %}
-  <div>
-      
-      <table>
-      <tr class='table_head'>
-          <th>No</th>
-          <th>Toplantı Tarihi</th>
-          <th>Toplantı Yeri </th>
-          <th>Toplantı Konusu </th>
-      </tr>
-      {% for meeting in object_list %}
-
-          <tr>
-            <td><a href="/events/meetings/{{meeting.id}}/">{{meeting.id }}</a></td>
-            <td>{{meeting.date}}</td>
-            <td>{{meeting.location}}</td>
-            <td>{{meeting.subject}}</td>
-          </tr>
-     
-        {% endfor %}
-    </table>
-
-  
-  </div>
-
-
-
-
-    </ul>
-{% else %}
-    <p>No meeting available.</p>
-{% endif %}
-
-	  {% if user.groups.all  %}
-<div class="vertical-menu">
-  <a href="#" class="active">Home</a>
-
-  {% if perms.events.add_meeting %}
-  <a href="/events/meetings/create/">Toplantı Ekle</a>
-	{% endif %}
-</div>
-		{% endif %}
-{% endblock %}
+</html>

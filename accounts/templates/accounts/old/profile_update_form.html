@@ -1,0 +1,218 @@
+
+
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Üye Profili </title>
+{% endblock %}
+
+{% block content %}
+<style type="text/css" media="all">
+
+        #address{
+            height:5em;
+            width:47em;
+            margin:1em 0 1em 0;
+            }
+        #address div{
+            width:13em;
+            float:left;
+            padding:0 .5em 0 1.5em;
+            border-left:1px solid #CCC;
+            }
+        #address div#first{
+            border-left:none;
+            }
+        #address h3{
+            border-bottom: none;
+            margin-top: 0;
+            }   
+        .date {
+            float:right;
+            font-size:.8em;
+            margin-top:.4em;
+            text-align:right;
+            }
+        abbr, acronym{
+            border-bottom:1px dotted #333;
+            cursor:help;
+            }   
+        address{
+            font-style:italic;
+            color:#333;
+            font-size:.9em;
+            }
+        .profile{
+            background-color: rgba(149, 217, 230,0.5);
+            align-items:  center;
+            margin:1em auto;
+            max-width: 100em;
+            font-family: Times New Roman, Arial, Helvatica;
+            padding-right:   20px;
+            padding-bottom: 50px;
+        }
+        
+        h1{
+            font-size:1.5em;
+            font-family: Helvetica, Verdana, Arial, sans-serif;
+            }
+            table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width:50%;
+}
+
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 5px;
+    background-color: #CAC9C9;
+}
+
+
+
+
+        h2 {
+            clear:both;
+            font-size: 1.9em;
+            font-weight:bold;
+            margin-top:2em;
+            font-variant: small-caps;
+            padding-left:.25em;
+            background-color:#EEE;
+            border-bottom: 1px solid #999;
+            letter-spacing: .06em;
+            }
+        h3 {margin: 3em 0 0 0;}
+    </style>
+    <style type="text/css" media="print">
+        body {
+            background-color:#FFF;
+            border-width:0 0 0 0;
+            margin:0;
+            width:100%
+            }
+    </style>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data">{% csrf_token %}
+    <div class="profile">
+    <h1 style="font-size: 35px;background-color: white">{{user.first_name }} {{user.last_name }} - SAT({{user.id}})</h1>
+    <div id="address" style="font-size: 25px">
+        <div id="first">
+
+        </div>
+                <div style="margin-right: auto">
+            <h3><img src="{{user.profile.photo.url}}" style="height: 200px; padding-bottom:  20px;"></h3>
+              <input type="file" name="pp_image" accept="image/*">
+                
+        </div>
+
+    </div>
+    <h2>iletişim </h2>
+        <table>
+            <tr >
+                <th >Mail</th>
+                <th style="background-color: white"><input type="text" name="email" value="{{user.email}}"></th>
+            </tr>
+
+
+                <tr>
+                    <td >Telefon</td>
+                    <td style="background-color: white"><input type="text" name="phone" value="{{user.profile.phone}}"></td>
+                </tr>
+
+
+
+        </table>
+    <h2>bilgilerasd{{user_date}}</h2>
+        <table>
+            <tr >
+
+                <th >Doğum Tarihi (MM/DD/YYYY)</th>
+                <th style="background-color: white"><input type="date" name="birth_date" value="{{user_date}}"></th>
+            </tr>
+            <tr >
+
+                <th >Doğum Tarihi (MM/DD/YYYY)</th>
+                <th style="background-color: white"><input type="text" name="department" value="{{user_date}}"></th>
+            </tr>
+
+            <tr>
+                <td >Kan Grubu</td>
+                <td style="background-color: white">
+                              <select name="blood_types">
+                                {%for type  in blood_types%}
+                                <option value="{{type}}">{{type}}</option>
+                               {%endfor%}
+                              </select>
+
+
+                            </td>
+            </tr>
+
+
+
+        </table>
+    <h2>dalış bilgileri</h2>
+        <table>
+            <tr>
+                <td >Topluluğa Giriş Yılı</td>
+                <td style="background-color: white"><input type="text" name="date" value="{{user.profile.date}}"></td>
+            </tr>
+
+            <tr >
+
+                <th >Dalış Sayısı</th>
+                <th style="background-color: white"><input type="number" name="count" value="{{user.profile.dive_count}}"></th>
+            </tr>
+
+
+            <tr>
+                <td >Dalış Seviyesi</td>
+                <td style="background-color: white"><select name="level"  value={{user.profile.dive_level}}>
+                                <option selected hidden>{{user.profile.dive_level}}</option>
+                                {%for level  in levels%}
+                                <option value="{{level}}">{{level}}</option>
+                               {%endfor%}
+                              </select></td>
+            </tr>
+            
+
+
+
+        </table>
+    
+    <h2>alınan dersler</h2>
+
+    <ul>
+        {%for takencourse in taken_courses%}
+        <li>{{takencourse.course}}</li>
+        {%endfor%}
+
+    </ul>
+    
+
+
+    
+    <h2>katıldığı etkinlikler</h2>
+
+    <ul>
+        {%for camp in camps%}
+        <li>{{camp.event}}</li>
+        {%endfor%}
+        {%for lecture in lectures%}
+        <li>{{lecture.event}}</li>
+        {%endfor%}
+        {%for meeting in meetings%}
+        <li>{{meeting.event}}</li>
+        {%endfor%}
+
+    </ul>
+    
+
+</div>
+<input class="save"  type="submit" name="save" value="kaydet">
+</form>
+{% endblock %}

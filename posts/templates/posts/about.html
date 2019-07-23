@@ -1,35 +1,202 @@
+    {% load static %}
+<!DOCTYPE html>
+<html style="background-size: cover;background-repeat: no-repeat;">
 
-<!-- templates/home.html -->
-{% extends 'base.html' %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>deneme</title>
+    <link rel="stylesheet" href="{% static 'posts/assets/bootstrap/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'posts/assets/fonts/font-awesome.min.css'%}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+    <link rel="stylesheet" href="{% static 'posts/assets/css/styles.min.css'%}">
+</head>
 
-{% block title %}Biz Kimiz?{% endblock %}
+<body style="background-repeat: no-repeat;background-size: cover;background-image: url(&quot;{%static 'posts/assets/img/home_image.jpeg'%}&quot;);">
+    <h1 class="site-name" style="margin-left: 20px;margin-top: 20px;"><img height="200" src="{% static 'posts/assets/img/logo.png'%}" style="height: 130px;">ODTÜ Sualtı Topluluğu</h1>
+<!-- navbar-->
+    <nav class="navbar navbar-light navbar-expand-md d-lg-flex" style="background-color: #4d4949;width: 985;">
+        <div class="container-fluid"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item d-inline" role="presentation"><a class="nav-link active" href="/home">Anasayfa</a></li>
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="filter: hue-rotate(0deg) invert(0%);">Hakkımızda&nbsp;</a>
+                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="/about">Biz Kimiz</a><a class="dropdown-item" role="presentation" href="/accounts/boardmembers">Kurullar</a><a class="dropdown-item" role="presentation" href="/accounts/members/list1">Üyelerimiz</a></div>
+                    </li>
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="filter: hue-rotate(0deg) invert(0%);">Etkinlikler&nbsp;</a>
+                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="/events/camps">Kamplar</a><a class="dropdown-item" role="presentation" href="/events/meetings">Toplantılar</a><a class="dropdown-item" role="presentation" href="/events/lectures">Eğitimler</a></div>
+                    </li>
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Dersler&nbsp;</a>
+                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="/courses/SAT1XX">100 Kodlu Dersler</a><a class="dropdown-item" role="presentation" href="/courses/SAT2XX">200 Kodlu Dersler</a><a class="dropdown-item" role="presentation" href="/courses/SAT3XX">300 Kodlu Dersler</a>
+                            <a
+                                class="dropdown-item" role="presentation" href="/courses/SAT4XX">400 Kodlu Dersler</a>
+                        </div>
+                    </li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/contact">İletişim</a></li>
+                    <!-- Start: Authenticated User -->
+                    {%if user.is_authenticated%}
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Üye İşlemleri&nbsp;</a>
+                            <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="/accounts/profile">Profili Görüntüle</a><a class="dropdown-item" role="presentation" href="/accounts/profile/{{user.id}}/edit">Profili Düzenle</a><a class="dropdown-item" role="presentation" href="/accounts/logout">Çıkış Yap</a></div>
+                        </li>
+                    {%else%}
+                    <!-- End : Authenticated User -->
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/accounts/login">Üye Girişi</a></li>
+                    {% endif %}
+                    <!-- Start: Authorized User -->
+                    {%if perms.auth.add_user%}
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Yönetim Paneli&nbsp;</a>
+                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="/accounts/requests">Üye İstekleri</a><a class="dropdown-item" role="presentation" href="/announcements/add">Duyuru Ekle</a><a class="dropdown-item" role="presentation" href="/">deneme</a></div>
+                    </li>
+                    <!-- End : Authorized User -->
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- navbar end-->
+    <!-- Start: About Sektion -->
+    <section id="about" style="background-color: #ffffff;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="text-uppercase">Hakkımızda</h2>
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-group timeline">
+                        <li class="list-group-item">
+                            <div class="timeline-image"><img class="rounded-circle img-fluid" src="{% static 'posts/assets/img/logo.png'%}"></div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading"></div>
+                                <div class="timeline-body">
+                                    <p class="text-muted"><strong>ODTÜ Sualtı Topluluğu bir grup ODTÜ öğrencisi ve öğretim görevlisi tarafından 1985 yılında ODTÜ Rektörlüğü bünyesinde Spor Müdürlüğü’ne bağlı bir öğrenci topluluğu olarak kuruldu.</strong></p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item timeline-inverted">
+                            <div class="timeline-image"><img class="rounded-circle img-fluid" src="{% static 'posts/assets/img/download.png'%}"></div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading"></div>
+                                <div class="timeline-body">
+                                    <p class="text-muted"><strong>ODTÜ SAT’ın kuruluşunda edindiği temel ilke, Türkiye Kıyıları ve iç sularındaki tarihi, kültürelve doğal değerlerin araştırılması, korunması ve tanıtılmasıdır.</strong></p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="timeline-image"><img class="rounded-circle img-fluid" src="{% static 'posts/assets/img/976253-200.png'%}"></div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading"></div>
+                                <div class="timeline-body">
+                                    <p class="text-muted"><strong>Bu kapsamında yapılan çalışmalar arasında temel ve ileri dalış, arama, çıkarma ve ilk yardım eğitimleri vererek topluluk üyelerine bilgi ve beceri kazandırmak; keşif ve inceleme amaçlı çalışmalar için dalıcılar yetiştirmek; kıyılarımız ve iç sularımızdaki ekolojik değerler ( Deniz Çayırları, Deniz Kaplumbağaları, Akdeniz foku gibi), doğal değerler ( sualtı mağaraları, açık deniz kayalıkları ve deniz canlıları sığınakları gibi), kültürel değerler (batıklar, sualtı arkeolojisi, denizcilik tarihi) gibi konularda araştırmalar ve tanıtım amaçlı (yarışmalar, paneller, toplantılar, seminerler gibi) etkinlikler düzenlemek yer almaktadır.</strong></p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="timeline-image" style="height: 120px;"><img class="rounded-circle img-fluid" src="{% static 'posts/assets/img/caretta_1_4SP7Z.jpg'%}" style="width: 200px;"></div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading"></div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">&nbsp;Topluluk 1986/1987 yıllarında deniz kaplumbağaları türlerinin üreme kumsalı olan Dalyan’da temel bir araştırma çalışması yürütmüştür.<br></p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="timeline-image"><img class="rounded-circle img-fluid" src="{% static 'posts/assets/img/s-8bd5ca18cac49c87720267fa25dce5b16fcf4ccd.jpg'%}" style="width: 200px;"></div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading"></div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">Topluluk 1986/1987 yıllarında deniz kaplumbağaları türlerinin üreme kumsalı olan Dalyan’da temel bir araştırma çalışması yürütmüştür. Akdeniz Foku’nu Koruma Projesi de yine o yıllarda ODTÜ Sualtı Topluluğu bünyesinden
+                                        çıkmış, bugünlere kadar gelmiştir.<br></p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item timeline-inverted">
+                            <div class="timeline-image"><img class="rounded-circle img-fluid" src="{% static 'posts/assets/img/kisspng-ship-blue-vector-ship-5a6e2181cff105.8265033115171669778517.jpg'%}" style="width: 200px;"></div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4 class="subheading"></h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">Çeşme Koyu’nda Osmanlı- Rus Deniz Savaşı’nda batmış bulunan Osmanlı ve Rus Komuta Gemilerinin bulunup tanınması çalışmaları (1988-1990), Antakya kıyılarında yine topluluk tarafından bulunan 1600 yıllık iki batık gemi
+                                        ve her birinde bulunan cam külçeler (1992/1993) ODTÜ Sualtı Topluluğu’nun Arkeoloji bilimine yaptığı katkıların ilkleridir.&nbsp;</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item timeline-inverted">
+                            <div class="timeline-image"><img class="rounded-circle img-fluid" src="{% static 'posts/assets/img/camera.jpeg'%}" style="width: 200px;"></div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4 class="subheading"></h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">Bunlara ek olarak topluluğun 1992 yılında ilk kez Bozcaada’da düzenlediği “Sualtında Görüntü Avlama Yarışması” SAGAY, Türkiye’de düzenlenen ilk sualtı fotoğraf yarışması olmasının yanı sıra, Zıpkınla Balık Avcılığı
+                                        Yerine Fotoğraf Makinesiyle Görüntü Avcılığı gibi anlamlı bir seçeneği sunarak Kuzey Ege’de “deniz parkları” kurulmasını ve işlemesini sağlamayı amaç edinmiştir.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item timeline-inverted">
+                            <div class="timeline-image"><img class="rounded-circle img-fluid" src="{% static 'posts/assets/img/30_1431687618ShG.jpg'%}" style="width: 200px;"></div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4 class="subheading"></h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">Geçtiğimiz yıllarda topluluk içerisinde Türkiye Kıyıları Deniz Mağaraları Envanter Projesi, Kilikya Bölgesi Arkeolojik Yüzey Araştırması, Deniz Çayırlarının Yayılımının İncelenmesi, Uluburun III Yapay Resif Projesi,
+                                        2017 yılında ODTÜ Spor Müdürlüğü tarafından “Yılın En Değerli Etkinliği” ödülü alan Engelsiz ODTÜ Projesi yürütülmüştür.&nbsp;<br></p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item timeline-inverted">
+                            <div class="timeline-image"><img class="rounded-circle img-fluid" src="{% static 'posts/assets/img/odt-logo.png'%}" style="width: 200px;"></div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4 class="subheading"></h4>
+                                </div>
+                                <div class="timeline-body">
+                                    <p class="text-muted">ODTÜ Sualtı Topluluğu Rektörlük makamına karşı sorumludur. Akademik Danışman ve beş öğrenciden oluşan yürütme kurulu, üç öğrenciden oluşan denetleme kurulu işleyişi sağlamakla görevlidir. Yürütme Kurulu ve Denetleme
+                                        Kurulu Genel Kurula karşı sorumludur. Topluluğun Akdeniz Foku Araştırma Grubu (AFAG), Batık Araştırma Grubu (BAG), Ekoloji Grubu (EKOG), Fotografi ve Videografi Grubu (FOVAG), Mağara Dalışı ve Araştırma Grubu (MADAG)
+                                        ve Serbest Dalış Grubu (SDG) gibi alt grupları ile çeşitli çalışma birimleri vardır.<br></p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item timeline-inverted">
+                            <div class="timeline-image"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End: About Sektion -->
+    <!-- Start: index-top-info -->
+    <div class="d-flex flex-row align-items-center index-top-info">
+        <div class="container">
+            <div class="row">
+                <div class="col social-links">
+                    <div class="float-left">
+                        <ul>
+                            <li><a href="https://www.facebook.com/odtusat/"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://www.instagram.com/odtusat/"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="https://www.youtube.com/user/ODTUSAT"><i class="fa fa-youtube-play"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col contact-information">
+                    <div class="float-right"><span>sat-yk@metu.edu.tr</span></div><a href="/home" style="padding-right: 20px;">Anasayfa</a><a href="/accounts/login" style="padding-right: 20px;">Üye Girişi</a><a href="/contact" style="padding-right: 20px;">İletişim</a></div>
+            </div>
+        </div>
+    </div>
+    <!-- End: index-top-info -->
+    <script src="{%static 'posts/assets/js/jquery.min.js'%}"></script>
+    <script src="{%static 'posts/assets/bootstrap/js/bootstrap.min.js'%}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+    <script src="{%static 'posts/assets/js/script.min.js'%}"></script>
+</body>
 
-{% block content %}
-{%for about in about_list%}
-
-{% if about in about_list1%}
-<div id="about" style="width: 1100px">
-	<img class='about-image' src="{{about.image.url}}" alt="about" style="max-height:300px">
-
-	<p> 
-{{about.text}}
-
-</p> 
-
-</div>
-{%else %}
-<div id="about" style="width: 1100px">
-
-
-	<p>
-{{about.text}}
-
-</p> 
-	<img class='about-image' src="{{about.image.url}}" style="max-height: 300px ">
-</div>
-{%endif %}
-{%endfor%}
-{% endblock %}
-
-
-
+</html>

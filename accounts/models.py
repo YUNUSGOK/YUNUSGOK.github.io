@@ -16,6 +16,7 @@ class SignUpRequest( models.Model ):
     password1 = models.CharField( max_length = 32 , null=True , blank=True , verbose_name='Şifre:' )
     password2 = models.CharField( max_length = 32 , null=True , blank=True , verbose_name='Şifreyi Tekrar Giriniz:' )
     member_no = models.IntegerField( null=True , blank=True )
+    
 
 
 
@@ -54,7 +55,7 @@ class Profile( models.Model ):
     photo = models.ImageField( upload_to=pp_image, default='pp/default_pp.svg' )
     date = models.CharField( max_length=7, null=True , blank=True )
     department = models.CharField( max_length=7, null=True , blank=True, verbose_name='Bölüm' )
-
+    
     class Meta:
         ordering =( 'member_no' ,  )
 

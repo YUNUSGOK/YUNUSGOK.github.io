@@ -3,8 +3,14 @@ import datetime
 
 class Announcement(models.Model): 
     head = models.CharField(max_length=50 , null=True , blank=True , verbose_name='Başlık')
+    short_text = models.CharField(max_length=200,null=True, blank=True, verbose_name='Duyuru Açıklama' )
     text = models.TextField(null=True)
-    date = models.DateField(default=datetime.date.today)
+    date = models.DateTimeField(default=datetime.datetime.now)
+    image = models.ImageField( upload_to='announcements/%Y/%m/%d/' , null=True , blank=True)
+    file = models.FileField( upload_to='announcements/%Y/%m/%d/', null=True ,blank=True)
+    url = models.URLField(max_length=250 , blank=True , null=True )
+    url_text = models.CharField(max_length=80 , null=True , blank=True , verbose_name='Url metni')
+    youtube = models.URLField(max_length=250 , blank=True , null=True )
 
 
 class AnnouncementImage(models.Model):

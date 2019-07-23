@@ -1,0 +1,32 @@
+
+
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+
+{% block title %}ODTÜ Sualtı Topluluğu{% endblock %}
+
+{% block content %}
+<h1 align="center">Anasayfa</h1>
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+  <p><a href="{% url 'logout' %}">logout</a></p>
+  <p><a href="{% url 'password_reset' %}">change password</a></p>
+
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">login</a>
+  <p><a href="{% url 'password_reset' %}">forgat my password</a></p>
+  <b><big>deneme</big></b>
+  <p>paragraf</p>
+<font face="Tahoma" size="20" color="yellow">Bu 1. örnek yazı.&lt;</font><br />
+ <a href="mailto:admin@venus.gen.tr">Bize e-mail göndermek için buraya tıklayın (E-mail).</a>
+{% endif %}
+
+<form>
+<input type="button" value="courses" onclick="window.location.href='/courses'" />
+</form>
+
+<input type="button" value="Geri Dön" onclick="javascript: history.back();">
+{% endblock %}
+
+<iframe src="http://html.sitesi.web.tr/" width="100%" frameborder="0" scrolling="yes"></iframe>

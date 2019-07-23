@@ -5,6 +5,7 @@ from django.views.generic.detail import DetailView
 from accounts.models import SignUpRequest
 from django.contrib.auth.models import User ,Group
 import random
+from django.utils import timezone
 
 
 class HomeView(TemplateView):

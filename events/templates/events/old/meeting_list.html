@@ -1,0 +1,51 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'courses/style.css' %}">
+
+{% if object_list %}
+  <div>
+      
+      <table>
+      <tr class='table_head'>
+          <th>No</th>
+          <th>Toplantı Tarihi</th>
+          <th>Toplantı Yeri </th>
+          <th>Toplantı Konusu </th>
+      </tr>
+      {% for meeting in object_list %}
+
+          <tr>
+            <td><a href="/events/meetings/{{meeting.id}}/">{{meeting.id }}</a></td>
+            <td>{{meeting.date}}</td>
+            <td>{{meeting.location}}</td>
+            <td>{{meeting.subject}}</td>
+          </tr>
+     
+        {% endfor %}
+    </table>
+
+  
+  </div>
+
+
+
+
+    </ul>
+{% else %}
+    <p>No meeting available.</p>
+{% endif %}
+
+	  {% if user.groups.all  %}
+<div class="vertical-menu">
+  <a href="#" class="active">Home</a>
+
+  {% if perms.events.add_meeting %}
+  <a href="/events/meetings/create/">Toplantı Ekle</a>
+	{% endif %}
+</div>
+		{% endif %}
+{% endblock %}
