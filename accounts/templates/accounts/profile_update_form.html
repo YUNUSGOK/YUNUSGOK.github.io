@@ -1,214 +1,208 @@
+{%load static%}
+<!DOCTYPE html>
+<html style="background-size: cover;background-repeat: no-repeat;">
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>accounts</title>
+    <link rel="stylesheet" href="{%static 'accounts/assets/bootstrap/css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{%static 'accounts/assets/fonts/font-awesome.min.css'%}">
+    <link rel="stylesheet" href="{%static 'accounts/assets/fonts/ionicons.min.css'%}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Actor">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+    <link rel="stylesheet" href="{%static 'accounts/assets/css/aguilaraldo1_section_contact.css'%}">
+    <link rel="stylesheet" href="{%static 'accounts/assets/css/Article-Clean.css'%}">
+    <link rel="stylesheet" href="{%static 'accounts/assets/css/Article-List.css'%}">
+    <link rel="stylesheet" href="{%static 'accounts/assets/css/Bold-BS4-CSS-Image-Slider.css'%}">
+    <link rel="stylesheet" href="{%static 'accounts/assets/css/ensign-form-1.css'%}">
+    <link rel="stylesheet" href="{%static 'accounts/assets/css/ensign-form.css'%}">
+    <link rel="stylesheet" href="{%static 'accounts/assets/css/Highlight-Blue.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+    <link rel="stylesheet" href="{%static 'accounts/assets/css/index-top-info-1.css'%}">
+    <link rel="stylesheet" href="{%static 'accounts/assets/css/index-top-info.css'%}">
+    <link rel="stylesheet" href="{%static 'accounts/assets/css/Lightbox-Gallery.css'%}">
+    <link rel="stylesheet" href="{%static 'accounts/assets/css/Login-Form-Dark.css'%}">
+    <link rel="stylesheet" href="{%static 'accounts/assets/css/Newsletter-Subscription-Form.css'%}">
+    <link rel="stylesheet" href="{%static 'accounts/assets/css/OcOrato---Contact-Information-bar-line-with-e-mail-link-1.css'%}">
+    <link rel="stylesheet" href="{%static 'accounts/assets/css/Profile-Card-1.css'%}">
+    <link rel="stylesheet" href="{%static 'accounts/assets/css/Projects-Horizontal.css'%}">
+    <link rel="stylesheet" href="{%static 'accounts/assets/css/Registration-Form-with-Photo.css'%}">
+    <link rel="stylesheet" href="{%static 'accounts/assets/css/Responsive-Youtube-Embed.css'%}">
+    <link rel="stylesheet" href="{%static 'accounts/assets/css/Simple-Slider.css'%}">
+    <link rel="stylesheet" href="{%static 'accounts/assets/css/styles.css'%}">
+    <link rel="stylesheet" href="{%static 'accounts/assets/css/Team-Boxed.css'%}">
 
-{% extends 'base.html' %}
-
-{% block head %}
-<title>Üye Profili </title>
-{% endblock %}
-
-{% block content %}
-<style type="text/css" media="all">
-
-        #address{
-            height:5em;
-            width:47em;
-            margin:1em 0 1em 0;
-            }
-        #address div{
-            width:13em;
-            float:left;
-            padding:0 .5em 0 1.5em;
-            border-left:1px solid #CCC;
-            }
-        #address div#first{
-            border-left:none;
-            }
-        #address h3{
-            border-bottom: none;
-            margin-top: 0;
-            }   
-        .date {
-            float:right;
-            font-size:.8em;
-            margin-top:.4em;
-            text-align:right;
-            }
-        abbr, acronym{
-            border-bottom:1px dotted #333;
-            cursor:help;
-            }   
-        address{
-            font-style:italic;
-            color:#333;
-            font-size:.9em;
-            }
-        .profile{
-            background-color: rgba(149, 217, 230,0.5);
-            align-items:  center;
-            margin:1em auto;
-            max-width: 100em;
-            font-family: Times New Roman, Arial, Helvatica;
-            padding-right:   20px;
-            padding-bottom: 50px;
-        }
-        
-        h1{
-            font-size:1.5em;
-            font-family: Helvetica, Verdana, Arial, sans-serif;
-            }
-            table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width:50%;
-}
-
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 5px;
-    background-color: #CAC9C9;
-}
-
-
-
-
-        h2 {
-            clear:both;
-            font-size: 1.9em;
-            font-weight:bold;
-            margin-top:2em;
-            font-variant: small-caps;
-            padding-left:.25em;
-            background-color:#EEE;
-            border-bottom: 1px solid #999;
-            letter-spacing: .06em;
-            }
-        h3 {margin: 3em 0 0 0;}
-    </style>
-    <style type="text/css" media="print">
-        body {
-            background-color:#FFF;
-            border-width:0 0 0 0;
-            margin:0;
-            width:100%
-            }
-    </style>
 </head>
-<body>
+
+
+<body style="background-repeat: no-repeat;background-size: cover;background-image: url(&quot;{%static 'accounts/assets/img/home_image.jpeg'%}&quot;);">
     <form method="post" enctype="multipart/form-data">{% csrf_token %}
-    <div class="profile">
-    <h1 style="font-size: 35px;background-color: white">{{user.first_name }} {{user.last_name }} - SAT({{user.id}})</h1>
-    <div id="address" style="font-size: 25px">
-        <div id="first">
-
+    <h1 class="site-name" style="margin-left: 20px;margin-top: 20px;"><img height="200" src="{%static 'accounts/assets/img/logo.png'%}" style="height: 130px;">ODTÜ Sualtı Topluluğu</h1>
+   <!-- navbar-->
+    <nav class="navbar navbar-light navbar-expand-md d-lg-flex" style="background-color: #4d4949;width: 985;">
+        <div class="container-fluid"><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item d-inline" role="presentation"><a class="nav-link active" href="/home">Anasayfa</a></li>
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="filter: hue-rotate(0deg) invert(0%);">Hakkımızda&nbsp;</a>
+                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="/about">Biz Kimiz</a><a class="dropdown-item" role="presentation" href="/accounts/boardmembers">Kurullar</a><a class="dropdown-item" role="presentation" href="/accounts/members/list1">Üyelerimiz</a></div>
+                    </li>
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#" style="filter: hue-rotate(0deg) invert(0%);">Etkinlikler&nbsp;</a>
+                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="/events/camps">Kamplar</a><a class="dropdown-item" role="presentation" href="/events/meetings">Toplantılar</a><a class="dropdown-item" role="presentation" href="/events/lectures">Eğitimler</a></div>
+                    </li>
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Dersler&nbsp;</a>
+                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="/courses/SAT1XX">100 Kodlu Dersler</a><a class="dropdown-item" role="presentation" href="/courses/SAT2XX">200 Kodlu Dersler</a><a class="dropdown-item" role="presentation" href="/courses/SAT3XX">300 Kodlu Dersler</a>
+                            <a
+                                class="dropdown-item" role="presentation" href="/courses/SAT4XX">400 Kodlu Dersler</a>
+                        </div>
+                    </li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/contact">İletişim</a></li>
+                    <!-- Start: Authenticated User -->
+                    {%if user.is_authenticated%}
+                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Üye İşlemleri&nbsp;</a>
+                            <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="/accounts/profile">Profili Görüntüle</a><a class="dropdown-item" role="presentation" href="/accounts/profile/{{user.id}}/edit">Profili Düzenle</a><a class="dropdown-item" role="presentation" href="/accounts/logout">Çıkış Yap</a></div>
+                        </li>
+                    {%else%}
+                    <!-- End : Authenticated User -->
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="/accounts/login">Üye Girişi</a></li>
+                    {% endif %}
+                    <!-- Start: Authorized User -->
+                    {%if perms.auth.add_user%}
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">Yönetim Paneli&nbsp;</a>
+                        <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="/accounts/requests">Üye İstekleri</a><a class="dropdown-item" role="presentation" href="/announcements/add">Duyuru Ekle</a><a class="dropdown-item" role="presentation" href="/">deneme</a></div>
+                    </li>
+                    <!-- End : Authorized User -->
+                    {% endif %}
+                </ul>
+            </div>
         </div>
-                <div style="margin-right: auto">
-            <h3><img src="{{user.profile.photo.url}}" style="height: 200px; padding-bottom:  20px;"></h3>
-              <input type="file" name="pp_image" accept="image/*">
-                
-        </div>
+    </nav>
+    <!-- navbar end-->
+    <!-- Start: Profile Card-1 -->
+    <div class="profile-card" style="background-color: #e6dfdf;padding-bottom: 30px;">
+        <div class="profile-back"></div><img class="rounded-circle profile-pic" src="{{user.profile.photo.url}}"><p>Resmi Güncelle<br><input type="file" name="pp_image" accept="image/*"><p>
+        <h3 class="profile-name">{{user.first_name}} {{user.last_name}}</h3>
+        <p class="profile-bio">SAT{{user.profile.member_no}}</p>
 
-    </div>
-    <h2>iletişim </h2>
-        <table>
-            <tr >
-                <th >Mail</th>
-                <th style="background-color: white"><input type="text" name="email" value="{{user.email}}"></th>
-            </tr>
-
-
-                <tr>
-                    <td >Telefon</td>
-                    <td style="background-color: white"><input type="text" name="phone" value="{{user.profile.phone}}"></td>
-                </tr>
-
-
-
-        </table>
-    <h2>bilgilerasd{{user_date}}</h2>
-        <table>
-            <tr >
-
-                <th >Doğum Tarihi (MM/DD/YYYY)</th>
-                <th style="background-color: white"><input type="date" name="birth_date" value="{{user_date}}"></th>
-            </tr>
-
-
-            <tr>
-                <td >Kan Grubu</td>
-                <td style="background-color: white">
+        <div class="container" id="personal-info" href="#">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr class="text-center" style="background-color: #ab6565;">
+                            <th class="d-lg-flex justify-content-lg-start">Hakkında</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="background-color: #f5a499;">Doğum Tarihi</td>
+                            <td><input type="date" name="birth_date" value="{{user_date}}"></td>
+                        </tr>
+                        <tr>
+                            <td style="background-color: #f5a499;">Bölüm</td>
+                            <td><input type="text" name="department" value="{{user.profile.department}}"></td>
+                        </tr>
+                        <tr>
+                            <td style="background-color: #f5a499;">Kan Grubu</td>
+                            <td>
                               <select name="blood_types">
+                                <option selected hidden>{{user.profile.blood_type}}</option>
                                 {%for type  in blood_types%}
                                 <option value="{{type}}">{{type}}</option>
                                {%endfor%}
                               </select>
 
-
-                            </td>
-            </tr>
-
-
-
-        </table>
-    <h2>dalış bilgileri</h2>
-        <table>
-            <tr>
-                <td >Topluluğa Giriş Yılı</td>
-                <td style="background-color: white"><input type="text" name="date" value="{{user.profile.date}}"></td>
-            </tr>
-
-            <tr >
-
-                <th >Dalış Sayısı</th>
-                <th style="background-color: white"><input type="number" name="count" value="{{user.profile.dive_count}}"></th>
-            </tr>
-
-
-            <tr>
-                <td >Dalış Seviyesi</td>
-                <td style="background-color: white"><select name="level"  value={{user.profile.dive_level}}>
+</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="container" id="dive-info">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr style="background-color: #656cab;">
+                            <th class="d-lg-flex justify-content-lg-start">Dalış Bilgileri</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="background-color: #5f94e4;">Topluluğa Girişi Yılı</td>
+                            <td><input type="text" name="date" value="{{user.profile.date}}"></td>
+                        </tr>
+                        <tr>
+                            <td style="background-color: #5f94e4;">Dalış Sayısı</td>
+                            <td><input type="number" name="count" value="{{user.profile.dive_count}}"></td>
+                        </tr>
+                        <tr>
+                            <td style="background-color: #5f94e4;">Dalış Seviyesi</td>
+                            <td><select name="level"  value={{user.profile.dive_level}}>
                                 <option selected hidden>{{user.profile.dive_level}}</option>
                                 {%for level  in levels%}
                                 <option value="{{level}}">{{level}}</option>
                                {%endfor%}
                               </select></td>
-            </tr>
-            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-
-
-        </table>
-    
-    <h2>alınan dersler</h2>
-
-    <ul>
-        {%for takencourse in taken_courses%}
-        <li>{{takencourse.course}}</li>
-        {%endfor%}
-
-    </ul>
-    
-
-
-    
-    <h2>katıldığı etkinlikler</h2>
-
-    <ul>
-        {%for camp in camps%}
-        <li>{{camp.event}}</li>
-        {%endfor%}
-        {%for lecture in lectures%}
-        <li>{{lecture.event}}</li>
-        {%endfor%}
-        {%for meeting in meetings%}
-        <li>{{meeting.event}}</li>
-        {%endfor%}
-
-    </ul>
-    
-
-</div>
-<input class="save"  type="submit" name="save" value="kaydet">
+        <div class="container" id="contact">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr style="background-color: #a6275c;">
+                            <th>İletişim</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="background-color: #d76b98;">Mail</td>
+                            <td><input type="text" name="email" value="{{user.email}}"></td>
+                        </tr>
+                        <tr>
+                            <td style="background-color: #d76b98;">Telefon</td>
+                            <td><input type="text" name="phone" value="{{user.profile.phone}}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <input class="save"  type="submit" name="save" value="kaydet">
 </form>
-{% endblock %}
+    </div>
+    <!-- End: Profile Card-1 -->
+    <!-- Start: index-top-info -->
+    <div class="d-flex flex-row align-items-center index-top-info">
+        <div class="container">
+            <div class="row">
+                <div class="col social-links">
+                    <div class="float-left">
+                        <ul>
+                            <li><a href="https://www.facebook.com/odtusat/"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://www.instagram.com/odtusat/"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="https://www.youtube.com/user/ODTUSAT"><i class="fa fa-youtube-play"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col contact-information">
+                    <div class="float-right"><span>sat-yk@metu.edu.tr</span></div><a href="/home" style="padding-right: 20px;">Anasayfa</a><a href="/accounts/login" style="padding-right: 20px;">Üye Girişi</a><a href="/contact" style="padding-right: 20px;">İletişim</a></div>
+            </div>
+        </div>
+    </div>
+    <!-- End: index-top-info -->
+    <script src="{%static 'accounts/assets/js/jquery.min.js'%}"></script>
+    <script src="{%static 'accounts/assets/bootstrap/js/bootstrap.min.js'%}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
+    <script src="{%static 'accounts/assets/js/Simple-Slider.js'%}"></script>
+</body>
+
+</html>

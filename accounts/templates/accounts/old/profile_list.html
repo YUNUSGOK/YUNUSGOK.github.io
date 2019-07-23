@@ -1,0 +1,62 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class ='member-list'>
+
+<button onclick="window.location.href = '/accounts/members/list1';">1</button>
+<button onclick="window.location.href = '/accounts/members/list2';">2</button>
+<button onclick="window.location.href = '/accounts/members/list3';">3</button>
+<button onclick="window.location.href = '/accounts/members/list4';">4</button>
+<button onclick="window.location.href = '/accounts/members/list5';">5</button>
+<button onclick="window.location.href = '/accounts/members/list6';">6</button>
+<button onclick="window.location.href = '/accounts/members/list7';">7</button>
+
+
+</div>
+
+{% if object_list %}
+    <ul>
+
+
+	<div>
+	   	
+	   	<table>
+			<tr class='table_head'>
+			    <th>Üye Numarası</th>
+			    <th>İsmi</th>
+			</tr>
+			{% for profile in member_set %}
+		  	{% if user.is_authenticated %}
+			  	<tr>
+				    
+				    <td>{{profile.member_no}}</td>
+				    <td><a href="/accounts/members/{{profile.member_no}}/">{{profile.user.first_name}} {{profile.user.last_name}}</a></td>
+
+			  	</tr>
+			
+		  	{% else%}
+			  	<tr>
+				    <td>{{profile.member_no}}</td>
+				    <td>{{profile.user.first_name}} {{profile.user.last_name}}</td>
+			  	</tr>
+			{% endif %}
+				{% endfor %}
+		</table>
+
+	
+	</div>
+
+
+
+
+
+    </ul>
+{% else %}
+    <p>No camp available.</p>
+{% endif %}
+
+{% endblock %}
+

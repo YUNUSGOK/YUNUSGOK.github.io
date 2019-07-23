@@ -1,0 +1,68 @@
+
+
+{% extends 'base.html' %}
+	{% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'events/styles.css' %}">
+{% block head %}
+<title>Dersler</title>
+{% endblock %}
+
+{% block content %}
+
+<h1>{{ object.date|date }}</h1>
+<p>Teknik Sorumlu:{{ object.camp_ts }}</p>
+<p>Malzeme Sorumlusu: {{ object.camp_ms }}</p>
+<p>Etkinlik Sorumlusu: {{ object.camp_es}}</p>
+<p>Kamp yeri: {{ object.camp_location}}</p>
+
+
+  <div>
+      
+      <table>
+      <tr class='table_head'>
+          
+          <th>Üye No</th>
+          <th>Üye Adı</th>
+
+      </tr>
+      {% for event in  participant_set %}
+
+          <tr>
+            <td>{{event.member.member_no}}</td>
+ 
+            <td>{{event.member.user.first_name}} {{event.member.user.last_name}}</td>
+
+          </tr>
+     
+        {% endfor %}
+    </table>
+
+  
+  </div>
+
+	   {% if user.groups.all  %}
+
+<div class="vertical-menu">
+  <a href="#" class="active">Home</a>
+  {% if perms.events.change_camp  %}
+  <a href="update">Kamp Bilgilerini Düzenle</a>
+  {% endif %}
+  {% if perms.events.add_camp  %}
+  <a href="/events/camps/create/">Kamp Ekle</a>
+	{% endif %}
+
+</div>
+  {% endif %}		
+  {% if user.is_authenticated  %}
+<form action="/events/camps/{{object.id }}/" method="POST">
+
+{% csrf_token %}
+
+<input type="Submit" name="Submit" value="Submit"/>
+<input type="Submit" name="delete" value="Delete"/>
+</form>
+ {% endif %}    
+
+
+{% endblock %}
+

@@ -31,7 +31,7 @@ urlpatterns = [
     #List of authorized members to contact them
     path('boardmembers/',views.BoardMemberListView.as_view(),name='boardmembers'),
 
-    path('boards/<pk>/',views.GroupDetail.as_view(),name='boards')
+
     
 
 ]

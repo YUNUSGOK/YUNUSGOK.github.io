@@ -1,0 +1,70 @@
+
+
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Dersler</title>
+{% endblock %}
+
+{% block content %}
+<div id='meeting-detail'>
+<p>Tarih:{{ object.date|date }}</p>
+<p>Saat:{{ object.date|time }}</p>
+<p>Yer:{{ object.location }}</p>
+<p>Konusu: {{ object.subject }}</p>
+
+
+</div>
+
+  <div>
+      
+      <table>
+      <tr class='table_head'>
+          
+          <th>Üye No</th>
+          <th>Üye Adı</th>
+
+      </tr>
+      {% for event in  participant_set %}
+
+          <tr>
+            <td>{{event.member.member_no}}</td>
+ 
+            <td>{{event.member.user.first_name}} {{event.member.user.last_name}}</td>
+
+          </tr>
+     
+        {% endfor %}
+    </table>
+
+  
+  </div>
+
+	  {% if user.groups.all  %}
+<div class="vertical-menu">
+  <a href="#" class="active">Home</a>
+  {% if perms.events.change_meeting  %}
+  <a href="update">Toplantı Bilgilirini Düzenle</a>
+  {% endif %}
+  {% if perms.events.add_meeting %}
+  <a href="/events/meetings/create/">Toplantı Ekle</a>
+	{% endif %}
+</div>
+		{% endif %}
+	
+
+  {% if user.is_authenticated  %}
+    {%if object.date > now%}
+<form action="/events/meetings/{{object.id }}/" method="POST">
+
+{% csrf_token %}
+
+
+
+    <input type="Submit" name="Submit" value="Başvuru"/>
+    <input type="Submit" name="Delete" value="Başvuru İptal"/>
+    </form>
+    {%endif%}
+ {% endif %}    
+
+{% endblock %}

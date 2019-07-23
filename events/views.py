@@ -133,8 +133,8 @@ class MeetingDetailView(DetailView):
 class CampCreate(PermissionRequiredMixin,CreateView):
     permission_required = ('events.add_camp',)
     model = Camp
-    success_url = '/events/meetings'
-    fields = ['date','camp_ts','camp_ms','camp_es','camp_location']
+    success_url = '/events/camps'
+    fields = ['date','camp_ts','camp_ms','camp_es','camp_location','photo','file','text']
     template_name_suffix ='_create_form'
 
 
@@ -142,7 +142,7 @@ class LectureCreate(PermissionRequiredMixin,CreateView):
     permission_required = 'events.add_lecture'
     model = Lecture
     success_url = '/events/lectures'
-    fields = ['date','instructor','lecture_course']
+    fields = ['date','instructor','lecture_course','photo','file','text']
     template_name_suffix ='_create_form'
 
 
@@ -150,7 +150,7 @@ class MeetingCreate(PermissionRequiredMixin,CreateView):
     permission_required = 'events.add_meeting'
     model = Meeting
     success_url = '/events/meetings'
-    fields = ['date','location','subject']
+    fields = ['date','location','subject','photo','file','text']
     template_name_suffix ='_create_form'
 
 
@@ -165,14 +165,16 @@ class CampUpdate(PermissionRequiredMixin,UpdateView):
 class LectureUpdate(PermissionRequiredMixin,UpdateView):
     permission_required = 'events.change_lecture'
     model = Lecture
-    fields = ['lecdate','instructor','lecture_course']
+    fields = ['date','instructor','lecture_course','photo','file','text']
     template_name_suffix = '_update_form'
+    success_url = '/events/lectures/'
 
 
 class MeetingUpdate(PermissionRequiredMixin,UpdateView):
     permission_required = 'events.change_meeting'
     model = Meeting
-    fields = ['date','location','subject']
+    fields = ['date','location','subject','photo','file','text']
     template_name_suffix = '_update_form'
+    success_url = '/events/meetings/'
 
 

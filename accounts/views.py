@@ -43,7 +43,12 @@ class BoardMemberListView(ListView):#Groups with autherized member
                 Group.objects.get(name='Teknik Kurul')
                 ]
 
-
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['yk'] = Group.objects.get(name='Yürütme Kurulu').user_set.all()
+        context['dk'] = Group.objects.get(name='Denetleme Kurulu').user_set.all()
+        context['tk'] = Group.objects.get(name='Teknik Kurul').user_set.all()
+        return context
 
 
 class SignUpRequestCreate(generic.CreateView):
@@ -81,6 +86,7 @@ class SignUpRequestListView(ListView):
                 first_name=signup_request.first_name,
                 last_name=signup_request.last_name,
                 email=signup_request.email,
+                id=signup_request.member_no,
                 )
             
             user.set_password(signup_request.password1)#for encrypted password
@@ -124,11 +130,13 @@ class ProfileUpdate(DetailView):
         profile=user.profile
         if(request.POST.get('save')):#Saves button click check to update profile 
             user.email = request.POST.get('email',user.email)
-            profile.phone =  request.POST.get('phone',profile.phone)
-            profile.birth_date =  request.POST.get('birth_date',profile.birth_date)
-            profile.date =  request.POST.get('date', profile.date)
-            profile.dive_count =  request.POST.get('count', profile.dive_count)
-            profile.dive_level =  request.POST.get('level', profile.dive_level)
+            profile.phone = request.POST.get('phone',profile.phone)
+            profile.birth_date = request.POST.get('birth_date',profile.birth_date)
+            profile.date = request.POST.get('date', profile.date)
+            profile.dive_count = request.POST.get('count', profile.dive_count)
+            profile.dive_level = request.POST.get('level', profile.dive_level)
+            profile.department = request.POST.get('department' , profile.department )
+            profile.blood_type = request.POST.get('blood_types' , profile.blood_type ) 
             if(request.FILES.get('pp_image')):#checks whether there is an image input to change pp
                 profile.photo = request.FILES['pp_image']
             profile.save()
@@ -147,18 +155,14 @@ def profile_view(request):#Authenticated user's personal profile detail page
     user = request.user
     
     taken_courses= user.profile.takencourse_set.all()#courses user took
+
     #events user participated 
     camps = user.profile.campparticipant_set.all() 
     lectures = user.profile.lectureparticipant_set.all()
     meetings = user.profile.meetingparticipant_set.all() 
-    
+
     context= {'user':user , 'taken_courses' :taken_courses , 
-        'camps':camps, 'lectures': lectures,'meetings':meetings}
+        'camps':camps, 'lectures': lectures,'meetings':meetings }
     return render(request, 'accounts/profile_detail.html', 
         context) 
-
-class GroupDetail(DetailView):
-    model = Group
-    template_name = 'accounts/group_detail.html'
-
 

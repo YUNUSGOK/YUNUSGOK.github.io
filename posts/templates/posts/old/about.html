@@ -1,0 +1,35 @@
+
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+
+{% block title %}Biz Kimiz?{% endblock %}
+
+{% block content %}
+{%for about in about_list%}
+
+{% if about in about_list1%}
+<div id="about" style="width: 1100px">
+	<img class='about-image' src="{{about.image.url}}" alt="about" style="max-height:300px">
+
+	<p> 
+{{about.text}}
+
+</p> 
+
+</div>
+{%else %}
+<div id="about" style="width: 1100px">
+
+
+	<p>
+{{about.text}}
+
+</p> 
+	<img class='about-image' src="{{about.image.url}}" style="max-height: 300px ">
+</div>
+{%endif %}
+{%endfor%}
+{% endblock %}
+
+
+
