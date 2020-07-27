@@ -6,46 +6,46 @@ Serpil Kozludere        5
 Selim Toprak        6
 Elvan Yurdun        7
 Cem Orkun Kıraç     8
-Yaman Asil      
-Durul Burak Eti     
-Kayhan Güceli       
-Yalçın Savaş        
-Fatih Tunalı        
-Can Tunçsav     
-Ali Batur       
-Rahmi Uysalkan      
-Okan Yöney      
-Zafer Kızılkaya     
-Taner Şekercioğlu       
+Yaman Asil
+Durul Burak Eti
+Kayhan Güceli
+Yalçın Savaş
+Fatih Tunalı
+Can Tunçsav
+Ali Batur
+Rahmi Uysalkan
+Okan Yöney
+Zafer Kızılkaya
+Taner Şekercioğlu
 M.Kemal Günay       43
 D.Kemal Özyurt      44
 Yiğit Özgünel       49
 M.Onur Sonuvar      52
 Okan Taktak     53
-Harun Güçlüsoy      
-Erkut Arcak     
-Evrim İmer      
-Saner Gülsöken      
-Ayşegül Akdeniz Uras        
-Hakan Türkmenoğlu       
-Kerem Özsoy     
-Taner Yöney     
-Serhan Poçan        
-İlker Ülker     
-Hilmi Ertüzün       
-Umut Ali Yener      
-Tamer Yörükoğlu     
-Oğuz Yiğiterhan     
-Lütfü Yiğit Özyurt      
+Harun Güçlüsoy
+Erkut Arcak
+Evrim İmer
+Saner Gülsöken
+Ayşegül Akdeniz Uras
+Hakan Türkmenoğlu
+Kerem Özsoy
+Taner Yöney
+Serhan Poçan
+İlker Ülker
+Hilmi Ertüzün
+Umut Ali Yener
+Tamer Yörükoğlu
+Oğuz Yiğiterhan
+Lütfü Yiğit Özyurt
 Pınar Gedik Özer        67
 Sedat Uğur      68
 Haldun Ülkenli      69
 Serdar Hamarat      80
-Gamze Uğur      
-Nesimi Ozan Veryeri     
-Taylan Şen      
-Atila Kara      
-Ceren Uzel      
+Gamze Uğur
+Nesimi Ozan Veryeri
+Taylan Şen
+Atila Kara
+Ceren Uzel
 Gökhan Tan      88
 Mutlu Yücel     107
 Erol İren       108
@@ -56,15 +56,15 @@ Ceren Balkır        126
 Ilgaz Korkmaz       132
 Vâlâ Tetik      133
 Altay Özaygen       140
-Atilla Uras     
-Ayşegül Birand      
-Gamze Saban     
-Serdar Ölez     
-Kutay Ülkü      
-Hakan Şapçı     
-Ayça Akın Hamarat       
-Murat Yavuz     
-Evren Aysev     
+Atilla Uras
+Ayşegül Birand
+Gamze Saban
+Serdar Ölez
+Kutay Ülkü
+Hakan Şapçı
+Ayça Akın Hamarat
+Murat Yavuz
+Evren Aysev
 Kâmil Bulut     148
 A.Türker Gürer      151
 Serkan Aydınhan     153
@@ -79,11 +79,11 @@ Eren Gürses     175
 Volkan Evrin        177
 Uluç Güner      181
 Ergin İren      184
-Ünal Vural      
-Özgür Alioğlu       
-Çağatay Çelik       
-Fatih Şenyurt       
-Oya Demirören Güleyin       
+Ünal Vural
+Özgür Alioğlu
+Çağatay Çelik
+Fatih Şenyurt
+Oya Demirören Güleyin
 Melih Özbek     202
 Gülnur Tumbat       203
 Umut Tuncer     207
@@ -102,11 +102,11 @@ Barış Tuncer        227
 Almıla Güvenç       228
 Gün Acar        230
 Hakan Ertürk        231
-Murat Şavkılıoğlu       
-Pınar Araz Özgu     
-Başak Kerimoğlu     
-Ebru Değertekin     
-Meltem Saldamlı     
+Murat Şavkılıoğlu
+Pınar Araz Özgu
+Başak Kerimoğlu
+Ebru Değertekin
+Meltem Saldamlı
 Mert Çelik      244
 Mustafa Gök     247
 Uzay Uğur Sezen     251
@@ -211,7 +211,7 @@ Hade Türkmen        412
 Utku Usta       413
 Cemil Yılmaz        415
 Ilgar Veryeri       416
-Zeynep Özbıyık Emden        
+Zeynep Özbıyık Emden
 Çağla Özgit     419
 Murat Ugiş      420
 Sinem Beyhan        421
@@ -592,7 +592,6 @@ Arda Gülsoy     867
 Edanur Eşmen        868
 Yonca Bulat     869
 Nil Aybike Gündü        870
-Alperen Sözer       871
 Görkem Varol        872
 Yağmur Topçu        873
 Tolunay Durmuş      874
